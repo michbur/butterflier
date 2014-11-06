@@ -12,14 +12,13 @@ heart_equation <- function(t)
   data.frame(x = 16*sin(t)^3, 
              y = (13*cos(t)-5*cos(2*t)-2*cos(3*t)-cos(4*t))+8)/6
 
-plot_nicely <- function(what) {
+plot_nicely <- function(what, npointsb = 1200) {
   pos_images <- c("heart", "butterfly")
   image_function <- switch(what,
                            butterfly = butterfly_equation,
                            heart = heart_equation)
   
   npoints=500
-  npointsb=1200
   opt <- theme(legend.position="none",
                panel.background = element_blank(),
                panel.grid = element_blank(),
@@ -41,5 +40,3 @@ plot_nicely <- function(what) {
     geom_point(alpha = data[["a"]],size=data[["s"]]) + 
     opt
 }
-
-plot_nicely("heart")
