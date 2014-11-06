@@ -12,7 +12,8 @@ heart_equation <- function(t)
   data.frame(x = 16*sin(t)^3, 
              y = (13*cos(t)-5*cos(2*t)-2*cos(3*t)-cos(4*t))+8)/6
 
-plot_nicely <- function(what, npointsb = 1200) {
+plot_nicely <- function(what, npointsb = 1200, point_size_min = 1,
+                        point_size_max = 15) {
   pos_images <- c("heart", "butterfly")
   image_function <- switch(what,
                            butterfly = butterfly_equation,
@@ -27,7 +28,8 @@ plot_nicely <- function(what, npointsb = 1200) {
                axis.text =element_blank())
   t <- seq(0, 10*pi, length = npointsb)
   point_image <- cbind(image_function(t),
-                     data.frame(s = runif(npointsb, min = 1, max = 15), 
+                     data.frame(s = runif(npointsb, min = point_size_min, 
+                                          max = point_size_max), 
                                 f = factor(sample(1L:10, npointsb, TRUE)), 
                                 a = runif(npointsb, min = 0.2, max = 0.5)))
   points <- data.frame(x = runif(npoints, -4, 4), 
